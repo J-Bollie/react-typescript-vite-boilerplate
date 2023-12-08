@@ -1,6 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import GlobalStyle from "./GlobalStyle";
 import App from "./App";
@@ -8,18 +8,9 @@ import App from "./App";
 const rootElement = document.getElementById("root");
 
 if (rootElement) {
-    const router = createHashRouter([
+    const router = createBrowserRouter([
         {
-            path: "/login",
-            element: (
-                <>
-                    <GlobalStyle />
-                    <h1>Login</h1>
-                </>
-            ),
-        },
-        {
-            path: "/main",
+            path: "/",
             element: (
                 <>
                     <GlobalStyle />
@@ -38,7 +29,8 @@ if (rootElement) {
         },
     ]);
 
-    ReactDOM.render(<RouterProvider router={router} />, rootElement);
+    const root = createRoot(rootElement);
+    root.render(<RouterProvider router={router} />);
 } else {
     console.error("Root element not found.");
 }
